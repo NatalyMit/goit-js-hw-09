@@ -86,9 +86,7 @@ function createMarkup(images) {
 }
 
 let lightbox = new SimpleLightbox('.gallery a', {
-  nav: true,
-  caption: true,
-  captionData: `${description}`,
-  preloading: false,
+  captions: true,
+  captionsData: 'alt',
   captionDelay: 250,
 });
