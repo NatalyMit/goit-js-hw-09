@@ -30,6 +30,9 @@
   align-items: center;
   gap: 10px;
 }
+button:hover {
+  background-color: rgba(108, 140, 255, 1);
+}
 
 input,
 textarea {
