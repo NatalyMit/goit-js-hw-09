@@ -85,8 +85,7 @@ function createMarkup(images) {
     .join('');
 }
 
-let lightbox = new SimpleLightbox('.gallery a', {
-  captions: true,
+const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });

@@ -1,15 +1,15 @@
 const formEl = document.querySelector('.feedback-form');
-form.addEventListener('input', onFormData);
-form.addEventListener('submit', onSubmitForm);
-
+formEl.addEventListener('input', onFormData);
+formEl.addEventListener('submit', onSubmitForm);
+const formData = {};
 function onFormData(e) {
   formData[e.target.name] = e.target.value;
   localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 }
 
 function onSubmitForm(e) {
-  console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
   e.preventDefault();
+  console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
   e.currentTarget.reset();
   localStorage.removeItem('feedback-form-state');
 }
