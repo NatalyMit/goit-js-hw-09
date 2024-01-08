@@ -1,14 +1,15 @@
 const formEl = document.querySelector('.feedback-form');
-formEl.addEventListener('input', onFormData);
+const LS_Key = 'feedback-form-state';
 formEl.addEventListener('submit', onSubmitForm);
+formEl.addEventListener('input', onFormData);
 
 function onFormData() {
-  const formData = {
+  let formData = {
     email: formEl.elements.email.value.trim(),
     message: formEl.elements.message.value.trim(),
   };
 
-  localStorage.setItem('feedback-form-state', JSON.stringify(formData));
+  localStorage.setItem(LS_Key, JSON.stringify(formData));
 }
 
 function onSubmitForm(e) {
@@ -19,17 +20,17 @@ function onSubmitForm(e) {
     alert('Заповніть всі поля!');
     return;
   }
-  console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
-  localStorage.removeItem('feedback-form-state');
+  console.log(JSON.parse(localStorage.getItem(LS_Key)));
+  localStorage.removeItem(LS_Key);
   e.currentTarget.reset();
 }
-dataFromLocalStorage();
-function dataFromLocalStorage() {
-  const data = localStorage.getItem('feedback-form-state');
 
-  if (data !== null) {
-    const parsedSavedData = JSON.parse(data);
+function dataFromLocalStorage() {
+  const savedMessage = localStorage.getItem(LS_Key);
+  if (savedMessage) {
+    const parsedSavedData = JSON.parse(savedMessage);
     formEl.elements.email.value = parsedSavedData.email ?? '';
     formEl.elements.message.value = parsedSavedData.message ?? '';
   }
 }
+dataFromLocalStorage();
